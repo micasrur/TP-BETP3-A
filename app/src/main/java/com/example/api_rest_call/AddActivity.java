@@ -21,6 +21,7 @@ public class AddActivity extends AppCompatActivity {
 
     EditText txtMarca, txtModelo;
     Button guardar;
+    Auto miAuto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Auto miAuto = new Auto(txtMarca.getText().toString(), txtModelo.getText().toString());
+                miAuto = new Auto(txtMarca.getText().toString(), txtModelo.getText().toString());
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://us-central1-be-tp3-a.cloudfunctions.net/")
@@ -44,7 +45,6 @@ public class AddActivity extends AppCompatActivity {
                         .build();
                 AutoService autoService = retrofit.create(AutoService.class);
                 Call<Void> http_call = autoService.addAuto(miAuto);
-               // Log.i("AUTO", miAuto.getMarca() + "-" + miAuto.getModelo());
 
                 http_call.enqueue(new Callback<Void>() {
                     @Override

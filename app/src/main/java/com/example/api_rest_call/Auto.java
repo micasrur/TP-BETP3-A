@@ -7,7 +7,7 @@ public class Auto {
     private String marca;
     private String modelo;
 
-    public Auto(String toString, String toString1) {
+    public Auto(String marca, String modelo) {
     }
 
     public String getId() {

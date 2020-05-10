@@ -16,17 +16,11 @@
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="fill_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="500dp"
-            android:focusable="false"
-            />
-
-
-
-
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 

@@ -58,7 +58,6 @@ public class MainActivity extends ListActivity {
         startActivity(miIntent);
     }
 
-
     public void getListadoVehiculos(){
 
         // Establezco una relacion de mi app con este endpoint:
@@ -69,16 +68,18 @@ public class MainActivity extends ListActivity {
 
 
         // Defnimos la interfaz para que utilice la base retrofit de mi aplicacion ()
-        AutoService autoService = retrofit.create(AutoService.class);
+        final AutoService autoService = retrofit.create(AutoService.class);
         Call<List<Auto>> http_call = autoService.getAutos();
         http_call.enqueue(new Callback<List<Auto>>() {
             @Override
             public void onResponse(Call<List<Auto>> call, Response<List<Auto>> response) {
                 // Si el servidor responde correctamente puedo hacer uso de la respuesta esperada:
                 autos.clear();
+                arraysAutos.clear();
 
                 for (Auto auto: response.body()){
                     autos.add(auto.getMarca() + " - " + auto.getModelo());
+                    arraysAutos.add(auto);
                 }
                 // Aviso al base adapter que cambio mi set de datos.
                 // Renderizacion general de mi ListView

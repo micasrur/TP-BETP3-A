@@ -51,10 +51,10 @@ public class DetailActivity extends AppCompatActivity {
         http_call.enqueue(new Callback<Auto>() {
             @Override
             public void onResponse(Call<Auto> call, Response<Auto> response) {
-                Auto auto = response.body();
+                Auto miAuto = response.body();
                 //setteo valores del auto
-                txtMarca.setText(auto.getMarca());
-                txtModelo.setText(auto.getModelo());
+                txtMarca.setText(miAuto.getMarca());
+                txtModelo.setText(miAuto.getModelo());
             }
 
             @Override
@@ -91,16 +91,12 @@ public class DetailActivity extends AppCompatActivity {
                 marca = txtMarca.getText().toString();
                 modelo = txtModelo.getText().toString();
 
-                Call<Void> http_call = autoService.saveAuto(
-                        idAuto,
-                        marca,
-                        modelo
-                );
+                Call<Void> http_call = autoService.saveAuto(idAuto,marca,modelo);
                 Log.i("DATOS", idAuto+"-"+marca+"-"+modelo);
                 http_call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getApplicationContext(), "Auto eliminado!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Auto editado!", Toast.LENGTH_LONG).show();
                         finish();
                     }
 
