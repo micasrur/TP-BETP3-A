@@ -2,10 +2,15 @@ package com.example.api_rest_call;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,12 +29,16 @@ public class MainActivity extends AppCompatActivity {
     ListView list;
     ListAdapter adaptador;
     ArrayList<String> autos = new ArrayList<>();
+    //para tener lista de mis autos
+    ArrayList<Auto> arraysAutos = new ArrayList<>();
+    Button btnAgregar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Listado de Autos");
 
 
         adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, autos);
@@ -40,7 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
         this.getListadoVehiculos();
 
+        btnAgregar= (Button) findViewById(R.id.bntAgregar);
+
     }
+    //posicion
+    protected void onListItemClick(ListView l, View v, int position, long id){
+        onListItemClick(l,v,position,id);
+        Intent miIntent = new Intent(MainActivity.this, DetailActivity.class);
+        miIntent.putExtra("id",arraysAutos.get(position).getId());
+        startActivity(miIntent);
+    }
+
 
     public void getListadoVehiculos(){
 
@@ -84,5 +103,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onClick(View view) {
+        Intent miIntent= null;
+        switch (view.getId()) {
+            case R.id.bntAgregar:
+                miIntent = new Intent(MainActivity.this, AddActivity.class);
 
+
+
+
+        }
+        if (miIntent != null) {
+            startActivity(miIntent);
+        }
+    }
 }
