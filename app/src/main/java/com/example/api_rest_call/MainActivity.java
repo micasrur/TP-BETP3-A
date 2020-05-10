@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Intent miIntent = new Intent(MainActivity.this, DetailActivity.class);
         miIntent.putExtra("id",arraysAutos.get(position).getId());
         startActivity(miIntent);
+        //fijasre onListener
     }
 
 
