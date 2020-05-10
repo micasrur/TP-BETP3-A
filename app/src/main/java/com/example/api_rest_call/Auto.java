@@ -7,6 +7,9 @@ public class Auto {
     private String marca;
     private String modelo;
 
+    public Auto(String toString, String toString1) {
+    }
+
     public String getId() {
         return id;
     }

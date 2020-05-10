@@ -1,9 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".DetailActivity"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/marca"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint="Marca"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"/>
+
+    <EditText
+        android:id="@+id/modelo"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint="Modelo"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="37dp"
+            />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="eliminar"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:onClick="cancelarOnClick"
+            />
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="volver"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:onClick="cancelarOnClick"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -40,21 +40,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Listado de Autos");
 
-
-        adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, autos);
-
-        list = (ListView) findViewById(android.R.id.list);
-
-        list.setAdapter(adaptador);
-
-        this.getListadoVehiculos();
-
         btnAgregar= (Button) findViewById(R.id.bntAgregar);
 
+
+        adaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, autos);
+        list = (ListView) findViewById(android.R.id.list);
+        list.setAdapter(adaptador);
+        this.getListadoVehiculos();
+
     }
-    //posicion
+    //por donde voy a mandar el id del auto en la posicion que yo haga clik
     protected void onListItemClick(ListView l, View v, int position, long id){
-        onListItemClick(l,v,position,id);
+        //super.onListItemClick(l,v,position,id);
         Intent miIntent = new Intent(MainActivity.this, DetailActivity.class);
         miIntent.putExtra("id",arraysAutos.get(position).getId());
         startActivity(miIntent);
@@ -72,10 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Defnimos la interfaz para que utilice la base retrofit de mi aplicacion ()
         AutoService autoService = retrofit.create(AutoService.class);
-
-
         Call<List<Auto>> http_call = autoService.getAutos();
-
         http_call.enqueue(new Callback<List<Auto>>() {
             @Override
             public void onResponse(Call<List<Auto>> call, Response<List<Auto>> response) {
@@ -85,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 for (Auto auto: response.body()){
                     autos.add(auto.getMarca() + " - " + auto.getModelo());
                 }
-
                 // Aviso al base adapter que cambio mi set de datos.
                 // Renderizacion general de mi ListView
                 ((BaseAdapter) adaptador).notifyDataSetChanged();
@@ -95,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Auto>> call, Throwable t) {
                 // SI el servidor o la llamada no puede ejecutarse, muestro un mensaje de eror:
-                Toast.makeText(MainActivity.this,"Hubo un error con la llamada a la API", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"Hubo un error con la API", Toast.LENGTH_LONG);
 
             }
         });
@@ -108,9 +101,6 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.bntAgregar:
                 miIntent = new Intent(MainActivity.this, AddActivity.class);
-
-
-
 
         }
         if (miIntent != null) {
