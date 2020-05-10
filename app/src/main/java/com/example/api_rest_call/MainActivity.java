@@ -24,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ListActivity {
 
     ListView list;
     ListAdapter adaptador;
@@ -49,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         this.getListadoVehiculos();
 
     }
+
     //por donde voy a mandar el id del auto en la posicion que yo haga clik
     protected void onListItemClick(ListView l, View v, int position, long id){
-        //super.onListItemClick(l,v,position,id);
+        super.onListItemClick(l,v,position,id);
         Intent miIntent = new Intent(MainActivity.this, DetailActivity.class);
         miIntent.putExtra("id",arraysAutos.get(position).getId());
         startActivity(miIntent);
-        //fijasre onListener
     }
 
 

@@ -46,7 +46,6 @@ public class DetailActivity extends AppCompatActivity {
 
 
         final AutoService autoService = retrofit.create(AutoService.class);
-
         Call<Auto> http_call = autoService.getAuto(idAuto);
 
         http_call.enqueue(new Callback<Auto>() {
@@ -56,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
                 //setteo valores del auto
                 txtMarca.setText(auto.getMarca());
                 txtModelo.setText(auto.getModelo());
-                            }
+            }
 
             @Override
             public void onFailure(Call<Auto> call, Throwable t) {
@@ -71,7 +70,6 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Call<Void> http_call = autoService.deleteAuto(idAuto);
-
                 http_call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
@@ -86,6 +84,7 @@ public class DetailActivity extends AppCompatActivity {
                 });
             }
         });
+
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +96,7 @@ public class DetailActivity extends AppCompatActivity {
                         marca,
                         modelo
                 );
-                //Log.i("DATOS", idAuto+"-"+marca+"-"+modelo);
+                Log.i("DATOS", idAuto+"-"+marca+"-"+modelo);
                 http_call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
